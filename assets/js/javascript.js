@@ -1,15 +1,17 @@
-showDog();
-
-function showDog() {
-  fetch("https://dog.ceo/api/breeds/image/random")
+function getData(myUrl) {
+  fetch(myUrl)
     .then((response) => {
       //   console.log(response);
       return response.json();
     })
     .then((data) => {
-      //   console.table(data);
-
-      let myDog = document.getElementById("myDogSection");
-      myDog.innerHTML = `<img src="${data.message}">`;
+      data.products.forEach((product) => {
+        // console.table(product.price + "$");
+        console.table(product);
+      });
+      console.table(data);
     });
 }
+getData(
+  "https://dummyjson.com/products?limit=10&skip=0&select=title,price,description,category"
+);
